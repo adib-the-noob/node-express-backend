@@ -1,5 +1,6 @@
 import express from 'express';
 import { PORT } from './config/env.js';
+import connectDB from './database/mongodb.js';
 
 // routers
 import authRouter from './routes/auth.routes.js';
@@ -19,5 +20,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => {
+    connectDB();
     console.log(`Server is running on http://localhost:${PORT}`);
 });
