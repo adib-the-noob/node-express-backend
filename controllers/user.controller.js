@@ -2,7 +2,7 @@ import User from "../models/user.model.js";
 
 export const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().select("-password");    
         res.status(200).json({
             status: "success",
             message: "Users retrieved successfully",
@@ -22,7 +22,7 @@ export const getUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
     try {
-        const users = await User.findById(req.params.id);
+        const users = await User.findById(req.params.id).select("-password");
         if (!users) {
             return res.status(404).json({
                 status: "error",
